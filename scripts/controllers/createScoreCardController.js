@@ -70,21 +70,23 @@ mainController.controller('createScoreCardController',['$scope','$timeout','$tra
                 color: "#FD0C1C",
                 definition: "Not on track"
             },
+            {
+                color: "#D3D3D3",
+                definition: "N/A"
+            },
+            {
+                color: "#FFFFFF",
+                definition: "No data"
+            }
 
 
         ];
+        //Add and delete the added color
         $scope.addLegendDefinition=function(){
-            $scope.score_card.legendset_definitions=[
-                {
-                    color: "#D3D3D3",
-                    definition: "N/A"
-                },
-                {
-                    color: "#FFFFFF",
-                    definition: "No data"
-                }
-
-            ]
+            // $scope.score_card.legendset_definitions=[
+            //
+            // ]
+            $scope.score_card.legendset_definitions.push($scope.score_card.legendset_definitions);
         };
         $scope.removeLegendDefinition=function (index) {
             $scope.score_card.legendset_definitions.splice(index,1);
@@ -240,7 +242,7 @@ mainController.controller('createScoreCardController',['$scope','$timeout','$tra
             //final selection
         };
         $scope.addAnotherPlaceholderGroup = function() {
-            if($scope.indicator_holder_group.name!=null){
+            //if($scope.indicator_holder_group.name!=null){
                 //Make sure name exist and indicator list is atleast one before allowing to add.
                 var new_holder_id = ($scope.score_card.data_settings.indicator_holders.length+1);
                 $scope.current_indicator_holder_position= ($scope.score_card.data_settings.indicator_holders.push({
@@ -258,7 +260,7 @@ mainController.controller('createScoreCardController',['$scope','$timeout','$tra
                 $('.add_another_placeholder_group_button').css("display","none").addClass("already_worked_on");
                 $('.add_another_placeholder_group_button').removeClass('add_another_placeholder_button');
 
-            }
+           // }
 
 
         };
