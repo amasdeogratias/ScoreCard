@@ -81,13 +81,11 @@ mainController.controller('createScoreCardController',['$scope','$timeout','$tra
 
 
         ];
-        //Add and delete the added color
+        //Add any color you know
         $scope.addLegendDefinition=function(){
-            // $scope.score_card.legendset_definitions=[
-            //
-            // ]
             $scope.score_card.legendset_definitions.push($scope.score_card.legendset_definitions);
         };
+        //delete one added colour
         $scope.removeLegendDefinition=function (index) {
             $scope.score_card.legendset_definitions.splice(index,1);
 
@@ -365,6 +363,21 @@ mainController.controller('createScoreCardController',['$scope','$timeout','$tra
 
             $(".selection_field").css("display","block");
             $(".no_selection_field").css("display","none");
+        };
+        $scope.descendLegendColor=function (item) {
+            //if(confirm($scope.checked)==true) {
+        if($scope.checked==true){
+             item.legendset=[
+                 {
+                     "color": $scope.getDefitionColor($scope.score_card.legendset_definitions,2).color,
+                     "min": "60",
+                     "max": "0"
+                 }
+
+             ]
+        }
+
+
         };
 
         //updating the indicator

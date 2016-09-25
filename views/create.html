@@ -241,10 +241,27 @@
                                                     <div class="col-sm-3">
                                                         <label class="sans-pro">Show Colours:</label>
                                                     </div>
+                                                    <!--switch between added colors-->
+                                                    <div class="col-lg-6">
+
+                                                        <ul class="list">
+                                                            <li class="item item-toggle">
+                                                                ON-OFF
+                                                                <label class="toggle toggle-assertive">
+                                                                    <input type="checkbox" ng-model="checked" ng-click="descendLegendColor()">
+                                                                    <div class="track">
+                                                                        <div class="handle"></div>
+                                                                    </div>
+                                                                </label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!--End switch between colors-->
                                                     <div class="col-sm-9">
                                                         <input type="checkbox" ng-model="indicator.legend_display" >
                                                         <!--Implement add another and delete existing feature-->
                                                     </div>
+
                                                 </div>
                                             </div>
 
@@ -266,6 +283,7 @@
                                                             <label class="sans-pro">Max</label>
                                                             <input type="text" ng-model="legend.max" class="form-control input-sm"ng-disabled="!indicator.legend_display">
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -280,11 +298,11 @@
                 </td>
             </tr>
         </table>
-    </div>
-</div>
-<div class="row">
+     </div>
+ </div>
+  <div class="row">
     <div class="col-sm-12" >
         <button class="btn pull-right" ng-click="saveScoreCardAfterVerification()">Create Score card</button>
         <a href="#/" class="btn btn-default pull-right" ng-click="saveScoreCardAfterVerification()">Cancel</a>
     </div>
-</div>
+  </div>
