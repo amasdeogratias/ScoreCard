@@ -232,7 +232,8 @@ div.tooltip.am-flip-x {
 	font-size:14px;
 }
 .btn-add-another-legendset-definition.color {
-	float: right;
-	color: black;
-	display: block;
+	float:right;
+	color:black;
+	display:block;
 }
+   .pull-right btn btn-default btn-sm sans-pro {}

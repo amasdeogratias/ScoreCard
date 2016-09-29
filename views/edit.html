@@ -5,8 +5,8 @@
     <div class="col-sm-4" style="font-family:source-sans-pro">
         <div>
             <label style="padding-bottom: 8px" class="sans-pro" for="inputHelpBlock">Title</label>
-            <input required="required" ng-model="score_card.header.title" type="text" id="inputHelpBlock" class="form-control input-sm" placeholder="Score Card Title"  aria-describedby="helpBlock">
-            <span id="helpBlock" class="help-block sans-pro" style="font-size: 0.5em">Score card title.</span>
+            <input required="required" ng-model="score_card.header.title" type="text" id="inputHelpBlock" class="form-control input-sm" placeholder="Score Card Title" value={{holderLabel}} aria-describedby="helpBlock">
+            <span id="helpBlock" class="help-block sans-pro" style="font-size: 0.5em" >Score card title.</span>
         </div>
         <div>
             <div class="col-sm-6">
@@ -38,8 +38,8 @@
     </div>
     <div class="col-sm-4">
         <label style="padding-bottom: 8px" class="sans-pro" for="inputHelpBlock">Description</label>
-        <textarea required="required" rows="5" class="form-control input-sm" placeholder="Score Card Description..."></textarea>
-        <span id="helpBlock3" class="help-block sans-pro" style="font-size: 0.5em">Score card description.</span>
+        <textarea required="required" rows="5" class="form-control input-sm" placeholder="Score Card Description..." value={{holderLabel}}></textarea>
+        <span id="helpBlock3" class="help-block sans-pro" style="font-size: 0.5em" >Score card description.</span>
     </div>
     <div class="col-sm-4">
         <div class="row">
@@ -52,6 +52,11 @@
                     <!--Implement add another and delete existing feature-->
                 </div>
             </div>
+            <br>
+            <br>
+            <button  type="button" class="bbtn btn-primary" ng-model="score_card.legendset_definitions" ng-click="addLegendDefinition()" style="width:25%"><span class="glyphicon-plus" ></span>Add</button>
+            <button  type="button" class="bbtn btn-danger"  ng-model="score_card.legendset_definitions" ng-click="removeLegendDefinition()" style="width:25%"><span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span>delete</button>
+
         </div>
 
 
@@ -71,7 +76,7 @@
                             <input ng-model="indicator_holder_group.name"
                                    type="text"
                                    class="form-control input-sm"
-                                   placeholder="Placeholder"
+                                   placeholder="Placeholder" value={{holderLabel}}
                                    ng-click="highlight_indicator_holder_group_and_update_selections(indicator_holder_group)"
                                     >
                         </div>
@@ -280,7 +285,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12" >
-        <button class="btn pull-right" ng-click="saveScoreCardAfterVerification()">Update Score card</button>
-        <a href="#/" class="btn btn-default pull-right">Cancel</a>
+        <button class="btn pull-right btn-primary" ng-click="saveScoreCardAfterVerification()">Update Score card</button>
+        <a href="#/" class="btn btn-warning pull-right">Cancel</a>
     </div>
 </div>

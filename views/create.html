@@ -54,8 +54,8 @@
             </div>
             <br>
             <br>
-            <button  type="button" class="btn-add-another-legendset-definition.color" ng-model="score_card.legendset_definitions" ng-click="addLegendDefinition()" style="background-color: #bce8f1"><span class="glyphicon-plus" ></span>Add</button>
-            <button class="btn-add-another-legendset-definition.color"  ng-model="score_card.legendset_definitions" ng-click="removeLegendDefinition()" style="background-color: #bce8f1" float="right"><span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span>delete</button>
+            <button  type="button" class="bbtn btn-primary" ng-model="score_card.legendset_definitions" ng-click="addLegendDefinition()" style="width:25%"><span class="glyphicon-plus" ></span>Add</button>
+            <button  type="button" class="bbtn btn-danger"  ng-model="score_card.legendset_definitions" ng-click="removeLegendDefinition()" style="width:25%"><span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span>delete</button>
         </div>
 
 
@@ -95,7 +95,7 @@
                     <label class="sans-pro">{{ indicator_holder_label(indicator_holder) }}</label>
                     <a style="cursor: pointer" class="" ng-click="updatePlaceholder(indicator_holder)"><span class="glyphicon glyphicon-edit text-primary"></span></a>
                     <a style="cursor: pointer" ng-click="deletePlaceholder(indicator_holder)"><span class="glyphicon glyphicon-trash text-danger"></span></a>
-                    <button class="add_another_placeholder_button btn btn-sm btn-default" ng-if="indicator_holder.indicators.length>=1" ng-click="addAnotherPlaceholder()"> Add Another</button>
+                    <button type="button" class="add_another_placeholder_button btn btn-sm btn-default" ng-if="indicator_holder.indicators.length>=1" ng-click="addAnotherPlaceholder()"> Add Another</button>
 
                 </td>
             </tr>
@@ -248,7 +248,7 @@
                                                             <li class="item item-toggle">
                                                                 ON-OFF
                                                                 <label class="toggle toggle-assertive">
-                                                                    <input type="checkbox" ng-model="checked" ng-click="descendLegendColor()">
+                                                                    <input type="checkbox" ng-model="checked" ng-click="descendLegendColor(item)" >
                                                                     <div class="track">
                                                                         <div class="handle"></div>
                                                                     </div>
@@ -274,6 +274,7 @@
                                                         <div class="col-sm-1" style="background-color: {{ getDefitionColor(score_card.legendset_definitions,$index).color }}">&nbsp;</div>
 
                                                     </div>
+
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <label class="sans-pro">Min</label>
@@ -302,7 +303,7 @@
  </div>
   <div class="row">
     <div class="col-sm-12" >
-        <button class="btn pull-right" ng-click="saveScoreCardAfterVerification()">Create Score card</button>
-        <a href="#/" class="btn btn-default pull-right" ng-click="saveScoreCardAfterVerification()">Cancel</a>
+        <button class="btn pull-right btn-primary" ng-click="saveScoreCardAfterVerification()">Create Score card</button>
+        <a href="#/" class="btn btn-warning pull-right" ng-click="saveScoreCardAfterVerification()">Cancel</a>
     </div>
   </div>

@@ -53,6 +53,15 @@ mainController.controller('editCardController',['$scope','$timeout','$translate'
             });
             return color;
         };
+        //Add any color you know
+        $scope.addLegendDefinition=function(){
+            $scope.score_card.legendset_definitions.push($scope.score_card.legendset_definitions);
+        };
+        //delete one added colour
+        $scope.removeLegendDefinition=function (index) {
+            $scope.score_card.legendset_definitions.splice(index,1);
+
+        }
 
         $scope.loading = false;
         $scope.indicatorGroups = [];
@@ -122,6 +131,7 @@ mainController.controller('editCardController',['$scope','$timeout','$translate'
                     }
                 })
             }
+            $scope.holderLabel=holder_label;
             return holder_label;
         };
 
@@ -151,20 +161,21 @@ mainController.controller('editCardController',['$scope','$timeout','$translate'
         };
         $scope.addAnotherPlaceholderGroup = function() {
             //Make sure name exist and indicator list is atleast one before allowing to add.
-            var new_holder_id = ($scope.score_card.data_settings.indicator_holders.length+1);
-            $scope.current_indicator_holder_position= ($scope.score_card.data_settings.indicator_holders.push({
-                "holder_id":new_holder_id,
-                "indicators":[]
-            })-1);
+
+            var new_holder_id = ($scope.score_card.data_settings.indicator_holders.length + 1);
+            $scope.current_indicator_holder_position = ($scope.score_card.data_settings.indicator_holders.push({
+                "holder_id": new_holder_id,
+                "indicators": []
+            }) - 1);
 
             $scope.score_card.data_settings.indicator_holder_groups.push({
-                "name":null,
-                "indicator_holder_ids":[new_holder_id],
-                "background_color":"#ffffff",
-                "holder_style":null
+                "name": null,
+                "indicator_holder_ids": [new_holder_id],
+                "background_color": "#ffffff",
+                "holder_style": null
             });
 
-            $('.add_another_placeholder_group_button').css("display","none").addClass("already_worked_on");
+            $('.add_another_placeholder_group_button').css("display", "none").addClass("already_worked_on");
             $('.add_another_placeholder_group_button').removeClass('add_another_placeholder_button');
 
         };
@@ -281,6 +292,9 @@ mainController.controller('editCardController',['$scope','$timeout','$translate'
         };
         //updating the indicator
         $scope.deletePlaceholder = function(indicator_holder){
+            //alert message to avoid unconditional delete
+            if(confirm("Are you sure you want to delete this indicator data?")==true){
+
             var pos = 0;
             angular.forEach($scope.score_card.data_settings.indicator_holders,function(value,key){
 
@@ -300,7 +314,9 @@ mainController.controller('editCardController',['$scope','$timeout','$translate'
             });
             $scope.current_indicator_holder_position  = $scope.score_card.data_settings.indicator_holders.length -1;
             console.log($scope.score_card.data_settings.indicator_holders);
-        };
+
+              }
+            };
 
         $scope.addAnotherPlaceholder = function() {
             var new_holder_id = $scope.makeid();
@@ -332,25 +348,30 @@ mainController.controller('editCardController',['$scope','$timeout','$translate'
 
         $scope.saveScoreCardAfterVerification = function() {
             //Submit the created score-card
+            if ($scope.score_card.header.title != null) {
+
             var id = $scope.makeid();
-            angular.forEach($scope.score_card.data_settings.indicator_holder_groups,function(dat){
-                angular.forEach(dat.indicator_holder_ids,function(hold,key){
-                    if(hold == 1){
-                        dat.indicator_holder_ids.splice(key,1);
+            angular.forEach($scope.score_card.data_settings.indicator_holder_groups, function (dat) {
+                angular.forEach(dat.indicator_holder_ids, function (hold, key) {
+                    if (hold == 1) {
+                        dat.indicator_holder_ids.splice(key, 1);
                     }
                 })
             });
-            angular.forEach($scope.score_card.data_settings.indicator_holders,function(dat,key1){
-                if(dat.indicators.length == 0){
-                    $scope.score_card.data_settings.indicator_holders.splice(key1,1);
+            angular.forEach($scope.score_card.data_settings.indicator_holders, function (dat, key1) {
+                if (dat.indicators.length == 0) {
+                    $scope.score_card.data_settings.indicator_holders.splice(key1, 1);
                 }
             });
-            $http.put(DHIS2URL+"/api/dataStore/scorecards/"+$routeParams.scorecardid, $scope.score_card).then(function(results){
+            $http.put(DHIS2URL + "/api/dataStore/scorecards/" + $routeParams.scorecardid, $scope.score_card).then(function (results) {
                 console.log('it worked!');
-                $location.path( "/show/"+$routeParams.scorecardid );
-            }, function(errorMessage){
-                console.log( 'errors happen');
+                $location.path("/show/" + $routeParams.scorecardid);
+            }, function (errorMessage) {
+                console.log('errors happen');
             });
+        }
+        else
+            alert('error!\n score card title need to be filled');
         };
 
         $scope.hoverOut = function(){

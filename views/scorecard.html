@@ -51,14 +51,14 @@
                 >
         </multi-select-tree></div>
         <div class="col-sm-5">
-            <button type="button" class="btn btn-default btn-sm sans-pro" style="width: 50%" ng-click="previousYear(periodType)"><< Prev Year</button>
-            <button type="button" class="pull-right btn btn-default btn-sm sans-pro" style="width: 50%" ng-click="nextYear(periodType)">Next Year >></button>
+            <button type="button" class="btn btn-primary btn-sm sans-pro" style="width: 50%"  ng-click="previousYear(periodType)"> Prev Year</button>
+            <button type="button" class="pull-right btn btn-primary btn-sm sans-pro" style="width: 50%" ng-click="nextYear(periodType)">Next Year </button>
         </div>
     </div>
 
     <div class="col-sm-2">
         <div class="col-sm-12"> <label class="text-muted sans-pro">&nbsp;</label></div>
-        <button class="btn btn-default sans-pro btn-sm" ng-click="updateScoreCard()">Update</button>
+        <button class="btn btn-info sans-pro btn-sm" ng-click="updateScoreCard()">Update</button>
         <button class="ngcsvv btn btn-default btn-sm sans-pro"
                 ng-csv="prepareDataForCSV(orgdata)" csv-header="getHeader()"
                 filename="{{ reportDimensions.orgUnit.name }} {{ selectedPeriod.name }} Score Card.csv"

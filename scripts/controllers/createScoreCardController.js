@@ -364,21 +364,53 @@ mainController.controller('createScoreCardController',['$scope','$timeout','$tra
             $(".selection_field").css("display","block");
             $(".no_selection_field").css("display","none");
         };
-        $scope.descendLegendColor=function (item) {
-            //if(confirm($scope.checked)==true) {
-        if($scope.checked==true){
-             item.legendset=[
-                 {
-                     "color": $scope.getDefitionColor($scope.score_card.legendset_definitions,2).color,
-                     "min": "60",
-                     "max": "0"
-                 }
 
-             ]
-        }
+        $scope.descendLegendColor = function (item) {
+            if (item == 'checked'){
+                $scope.checked=true;
+                $scope.legendset=false;
+
+
+                item.legendset = [
+                    {
+                        "color": $scope.getDefitionColor($scope.score_card.legendset_definitions,2).color,
+                        "max": "80",
+                        "min": "-"
+                    },
+                    {
+                        "color": $scope.getDefitionColor($scope.score_card.legendset_definitions,1).color,
+                        "max": "60",
+                        "min": "80"
+                    },
+                    {
+                        "color":$scope.getDefitionColor($scope.score_card.legendset_definitions,0).color,
+                        "max": "0",
+                        "min": "60"
+                    }
+                ];
+
+
+            }
+
+              $scope.legendset=true;
 
 
         };
+
+        /*$scope.descendLegendColor = 'item';
+        if ($scope.descendLegendColor == 'true'){
+            $scope.descendLegendColor = function (item) {
+                item.legendset = [
+                    {
+                        "color": $scope.getDefitionColor($scope.score_card.legendset_definitions,2).color,
+                        "min": "60",
+                        "max": "0"
+                    }
+                ]
+
+            }
+        };
+*/
 
         //updating the indicator
         $scope.updatePlaceholder = function(indicator_holder){
@@ -466,7 +498,7 @@ mainController.controller('createScoreCardController',['$scope','$timeout','$tra
                     console.log('errors happens');
                 });
             }else
-                alert('error!score card title and description need to be filled');
+                alert('error!\nscore card title and description need to be filled');
         };
 
         $scope.deleteScoreCard = function(scorecardKey) {
